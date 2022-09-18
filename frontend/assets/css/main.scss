@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
+
+h1, h2, h3, h4, h5 {
+    @apply font-headline;
+    @apply text-gray-800;
+}
+
+* {
+    scrollbar-color: #C7CDD9 rgba(#C7CDD9, 0.2);
+    scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+    width: 3px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgba(#C7CDD9, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #C7CDD9;
+    border-radius: 2px;
+}
+
+body {
+    @apply bg-gray-200;
+}
+
+.page-enter-active,
+.page-leave-active {
+    transition: all 0.2s;
+}
+.page-enter,
+.page-leave-to {
+    opacity: 0;
+}

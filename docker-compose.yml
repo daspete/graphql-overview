@@ -1,0 +1,48 @@
+services:
+    mongodb:
+        container_name: mongodb
+        image: mongo:4.4.9
+        restart: always
+        volumes: 
+            - ./data/db:/data/db
+        ports:
+            - 27017:27017
+        networks:
+            - testnet
+
+    nginx:
+        container_name: nginx
+        image: nginx:latest
+        restart: always
+        ports:
+            - 80:80
+        volumes:
+            - ./nginx:/etc/nginx/templates
+        networks:
+            testnet:
+                aliases:
+                    - graphql.localhost
+    
+    graphql:
+        container_name: graphql
+        image: node:16
+        working_dir: /var/www/server
+        volumes:
+            - .:/var/www
+        networks:
+            - testnet
+        command: bash -c "yarn; yarn dev"
+
+    frontend:
+        container_name: frontend
+        image: node:16
+        working_dir: /var/www/frontend
+        volumes:
+            - .:/var/www
+        networks:
+            - testnet
+        command: bash -c "yarn; yarn dev"
+        
+networks:
+    testnet:
+        driver: bridge
